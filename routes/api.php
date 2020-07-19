@@ -28,8 +28,11 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::post('me', 'AuthController@me')->middleware('verified');;
 
 });
 
 Route::post('register', 'API\UserController@register');
+Route::get('email/verify/{id}', 'VerificationApiController@verify')->name('verificationapi.verify');
+
+Route::get('email/resend', 'VerificationApiController@resend')->name('verificationapi.resend');

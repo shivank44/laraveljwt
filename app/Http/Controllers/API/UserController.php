@@ -5,10 +5,12 @@ use App\Http\Controllers\Controller;
 use App\User; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
-
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Auth\Events\Verified;
 
 class UserController extends Controller 
 {
+    use VerifiesEmails;
     public $successStatus = 200;
     /** 
      * Register api 

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\VerifyApiEmail;
 
 class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
@@ -56,5 +57,14 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    public function sendApiEmailVerificationNotification()
+
+    {
+
+    $this->notify(new VerifyApiEmail); // my notification
+
     }
 }
